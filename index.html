@@ -414,28 +414,7 @@
 }
        </script>
 
- <input type="text" id="city" placeholder="输入城市名">
-    <button onclick="showMap()">显示地图</button>
-    <div id="map"></div>
-    <script>
-        var map = new BMap.Map("map");
-        
-        function showMap() {
-            var cityName = document.getElementById("city").value;
-            var local = new BMap.LocalSearch(cityName, {
-                onSearchComplete: function(results) {
-                    if (local.getStatus() == BMAP_STATUS_SUCCESS) {
-                        var point = results.getPoi(0).point;
-                        map.centerAndZoom(point, 12);
-                        map.addOverlay(new BMap.Marker(point)); // 添加标记
-                    } else {
-                        alert("未找到该城市，请重试。");
-                    }
-                }
-            });
-            local.search(cityName);
-        }
-    </script>
+ 
     
 
     <section id="comment">
@@ -465,7 +444,28 @@
     }
 </script>
 
-   
+   <input type="text" id="city" placeholder="输入城市名">
+    <button onclick="showMap()">显示地图</button>
+    <div id="map"></div>
+    <script>
+        var map = new BMap.Map("map");
+        
+        function showMap() {
+            var cityName = document.getElementById("city").value;
+            var local = new BMap.LocalSearch(cityName, {
+                onSearchComplete: function(results) {
+                    if (local.getStatus() == BMAP_STATUS_SUCCESS) {
+                        var point = results.getPoi(0).point;
+                        map.centerAndZoom(point, 12);
+                        map.addOverlay(new BMap.Marker(point)); // 添加标记
+                    } else {
+                        alert("未找到该城市，请重试。");
+                    }
+                }
+            });
+            local.search(cityName);
+        }
+    </script>
    
 
    <section id="personal-center">
