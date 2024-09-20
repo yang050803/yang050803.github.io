@@ -379,12 +379,12 @@
     </script>
     
     <section id="weather">
-    <form class="weather">
+    <div class="weather">
         <h3>目的地天气</h3>
         <input type="text" id="weather-location" placeholder="输入城市">
         <button onclick="fetchWeather()">获取天气</button>
         <div id="weather-result"></div>
-    </form>
+    </div>
    </section>
    <script>
    async function fetchWeather() {
@@ -413,9 +413,10 @@
     }
 }
 
-           <input type="text" id="city" placeholder="输入城市名">
-           <button onclick="showMap()">显示地图</button>
-        <script>
+ <input type="text" id="city" placeholder="输入城市名">
+    <button onclick="showMap()">显示地图</button>
+    <div id="map"></div>
+    <script>
         var map = new BMap.Map("map");
         
         function showMap() {
