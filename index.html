@@ -35,8 +35,8 @@
                 <li><a href="#booking">在线预订</a></li>
                 <li><a href="#plan">行程规划</a></li>
                 <li><a href="#weather">实时天气</a></li>
-                <li><a href="#comment">用户评论</a></li>
                 <li><a href="#map">地图</a></li>
+                <li><a href="#comment">用户评论</a></li>
                 <li><a href="#personal-center">个人中心</a></li>
                 <li><a href="#contact">联系我们</a></li>
             </ul>
@@ -409,6 +409,31 @@
         weatherResult.textContent = '发生错误: ' + error.message;
     }
 }
+    <section id="map">
+        <input type="text" id="city" placeholder="输入城市名">
+        <button onclick="showMap()">显示地图</button>
+        <div class="map"></div>
+    </section>
+        <script>
+        var map = new BMap.Map("map");
+        
+        function showMap() {
+            var cityName = document.getElementById("city").value;
+            var local = new BMap.LocalSearch(cityName, {
+                onSearchComplete: function(results) {
+                    if (local.getStatus() == BMAP_STATUS_SUCCESS) {
+                        var point = results.getPoi(0).point;
+                        map.centerAndZoom(point, 12);
+                        map.addOverlay(new BMap.Marker(point)); // 添加标记
+                    } else {
+                        alert("未找到该城市，请重试。");
+                    }
+                }
+            });
+            local.search(cityName);
+        }
+    </script>
+    
 </script>
     <section id="comment">
         <div class="reviews">
@@ -437,28 +462,7 @@
     }
 </script>
 
-    <input type="text" id="city" placeholder="输入城市名">
-    <button onclick="showMap()">显示地图</button>
-    <div id="map"></div>
-    <script>
-        var map = new BMap.Map("map");
-        
-        function showMap() {
-            var cityName = document.getElementById("city").value;
-            var local = new BMap.LocalSearch(cityName, {
-                onSearchComplete: function(results) {
-                    if (local.getStatus() == BMAP_STATUS_SUCCESS) {
-                        var point = results.getPoi(0).point;
-                        map.centerAndZoom(point, 12);
-                        map.addOverlay(new BMap.Marker(point)); // 添加标记
-                    } else {
-                        alert("未找到该城市，请重试。");
-                    }
-                }
-            });
-            local.search(cityName);
-        }
-    </script>
+   
    
 
    <div id="personal-center">
