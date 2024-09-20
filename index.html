@@ -106,7 +106,8 @@
         });
     </script>
 
-    <section id="foreign destinations" class="foreign destination-list">
+    <section id="foreign destinations">
+        <div class="foreign destination-list">
         <h2>热门出境游</h2>
         <div class="foreign destination">
             <h3>巴黎</h3>
@@ -192,10 +193,11 @@
             <button onclick="toggleDetails(this)">更多信息</button>
             <p class="details" style="display: none;">马德里是西班牙的首都，以其丰富的艺术收藏、悠久的历史和热情的文化氛围而闻名。普拉多博物馆（Prado Museum）是世界上最重要的美术馆之一，收藏了从文艺复兴时期到19世纪的欧洲绘画大师的作品。索菲亚王后艺术中心（Reina Sofia Museum）则专注于20世纪的现代艺术，尤其是毕加索的《格尔尼卡》。马德里皇宫（Royal Palace of Madrid）是欧洲第二大宫殿，内部装饰豪华，展示了西班牙皇室的历史。太阳门广场（Puerta del Sol）是马德里的心脏地带，周围有许多商店、咖啡馆和酒吧。此外，马德里的足球文化也非常浓厚，伯纳乌球场（Santiago Bernabéu Stadium）是皇家马德里队的主场，吸引了无数球迷前来参观。马德里的美食以传统的西班牙风味为主，如海鲜饭（Paella）、火腿（Jamón）和土豆煎蛋（Tortilla Española）都是当地的特色菜肴。马德里的夜生活同样充满活力，有许多酒吧和俱乐部供游客体验西班牙的热情与狂欢。</p >
         </div>
-
+       </div>
         </section>
 
-        <section id="domestic destinations" class="domestic destination-list">
+        <section id="domestic destinations" >
+            <div class="domestic destination-list">
             <h2>火爆国内游</h2>
                 <div class="domestic destination">
                     <h3>北京</h3>
@@ -280,6 +282,7 @@
                     <p>人间天堂，西湖美景如画，古今交融的诗意之城，尽显江南水乡之韵。</p>
                     <button onclick="toggleDetails(this)">更多信息</button>
                     <p class="details" style="display: none;">杭州，人间天堂，西湖美景如画，烟雨朦胧中更显温婉。断桥残雪，雷峰夕照，每一处都是诗与远方的画卷。龙井茶香四溢，丝绸柔滑细腻，展现着江南的精致与韵味。杭州，一座让人沉醉于山水之间，流连忘返的江南名城。</p>
+                </div>
                 </div>
             </section>
 
@@ -410,9 +413,11 @@
     }
 }
     <section id="map">
-        <input type="text" id="city" placeholder="输入城市名">
-        <button onclick="showMap()">显示地图</button>
-        <div class="map"></div>
+        <div class="map">
+           <h2>查找地图</h2>
+           <input type="text" id="city" placeholder="输入城市名">
+           <button onclick="showMap()">显示地图</button>
+        </div>
     </section>
         <script>
         var map = new BMap.Map("map");
