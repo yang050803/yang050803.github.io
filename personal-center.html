@@ -38,21 +38,22 @@
     </section>
     <script>
         document.getElementById('bookingForm').addEventListener('load', function() {
-            const bookingForm = this.contentWindow.document.getElementById('bookingForm');
+            const iframeDocument = this.contentDocument || this.contentWindow.document;
+            const bookingForm = iframeDocument.getElementById('bookingForm');
+
             bookingForm.addEventListener('submit', function(event) {
                 event.preventDefault(); // 阻止默认提交行为
 
-                const destination = document.getElementById('destination').value;
-                const date = document.getElementById('date').value;
+                const destination = iframeDocument.getElementById('destination').value;
+                const date = iframeDocument.getElementById('date').value;
 
                 const newBooking = `目的地: ${destination} - 日期: ${date}`;
-
                 const bookingList = document.getElementById('booking-list');
                 const newListItem = document.createElement('li');
                 newListItem.textContent = newBooking;
                 bookingList.appendChild(newListItem);
 
-                this.reset(); // 清空表单
+                bookingForm.reset(); // 清空表单
             });
         });
     </script>
@@ -61,3 +62,4 @@
     </footer>
 </body>
 </html>
+
