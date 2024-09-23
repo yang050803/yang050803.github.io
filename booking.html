@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旅途记</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #map { width: 100%; height: 500px; }
+    </style>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        section { margin: 20px; }
+        #personal-center { margin-top: 40px; }
+    </style>
+    <script src="https://api.map.baidu.com/api?v=3.0&ak=8SijYThTdtDr8UZSUiA9w3ioVAX6Ib2G"></script>
+    <script>
+        function toggleDetails(button) {
+            const details = button.nextElementSibling;
+            details.style.display = details.style.display === 'none' ? 'block' : 'none';
+        }
+        </script>
+        
+</head>
+<body>
+    <header>
+        <h1>欢迎来到旅途记</h1>
+        <nav>
+            <ul>
+                <li><a href="login.html">登录</a></li>
+                <li><a href="foreign destinations.html">出境游</a></li>
+                <li><a href="domestic destinations.html">国内游</a></li>
+                <li><a href="booking.html">在线预订</a></li>
+                <li><a href="plan.html">行程规划</a></li>
+                <li><a href="weather.html">实时天气</a></li>
+                <li><a href="map.html">地图</a></li>
+                <li><a href="comment.html">用户评论</a></li>
+                <li><a href="personal-center.html">个人中心</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="booking">
+        <h2>在线预订</h2>
+        <form id="bookingForm">
+            <label for="destination">选择目的地:</label>
+            <select id="destination" name="destination" required>
+                <option value="paris">巴黎</option>
+                <option value="newyork">纽约</option>
+                <option value="tokyo">东京</option>
+                <option value="bali">巴厘岛</option>
+                <option value="rome">罗马</option>
+                <option value="thailand">泰国</option>
+                <option value="singapore">新加坡</option>
+                <option value="korea">韩国</option>
+                <option value="newzealand">新西兰</option>
+                <option value="dibai">迪拜</option>
+                <option value="kailuo">开罗</option>
+                <option value="madeli">马德里</option>
+                <option value="beijing">北京</option>
+                <option value="xian">西安</option>
+                <option value="chengdu">成都</option>
+                <option value="shanghai">上海</option>
+                <option value="chongqing">重庆</option>
+                <option value="qingdao">青岛</option>
+                <option value="changsha">长沙</option>
+                <option value="dalian">大连</option>
+                <option value="haerbin">哈尔滨</option>
+                <option value="tianjin">天津</option>
+                <option value="nanjing">南京</option>
+                <option value="hangzhou">杭州</option>
+            </select>
+            <label for="date">选择日期:</label>
+            <input type="date" id="date" name="date" required>
+            <input type="submit" value="预订">
+        </form>
+    </section>
+    <script>
+    // 表单提交事件处理
+    $(document).ready(function() {
+    $('#bookingForm').submit(function(event) {
+        event.preventDefault();
+        alert('预订成功！');
+    });
+
+    $('#contactForm').submit(function(event) {
+        event.preventDefault();
+        alert('留言发送成功！');
+    });
+});
+</script>
+</footer>
+<p>&copy; 2024 旅途记. 保留所有权利.</p>
+</footer>
+</body>
+</html>
