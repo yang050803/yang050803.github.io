@@ -49,24 +49,16 @@
          <button onclick="logout()">登出</button>
     </section>
    <script>
-        document.getElementById('bookingForm').addEventListener('load', function() {
-            const bookingForm = this.contentWindow.document.getElementById('bookingForm');
-            bookingForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // 阻止默认提交行为
+        window.onload = function() {
+        const bookingList = document.getElementById('booking-list');
+        const bookings = JSON.parse(localStorage.getItem('bookings')) || [];
 
-                const destination = document.getElementById('destination').value;
-                const date = document.getElementById('date').value;
-
-                const newBooking = `目的地: ${destination} - 日期: ${date}`;
-
-                const bookingList = document.getElementById('booking-list');
-                const newListItem = document.createElement('li');
-                newListItem.textContent = newBooking;
-                bookingList.appendChild(newListItem);
-
-                this.reset(); // 清空表单
-            });
+        bookings.forEach(booking => {
+            const newListItem = document.createElement('li');
+            newListItem.textContent = `目的地: ${booking.destination} - 日期: ${booking.date}`;
+            bookingList.appendChild(newListItem);
         });
+    };
     </script>
    
     
