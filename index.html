@@ -24,8 +24,8 @@
         
 </head>
 <body>
-        <h1 id="header">欢迎来到旅途记</h1>
-        <p id="description">这是一个多语言网页。</p>
+        <header>
+        <h1>欢迎来到旅途记</h1>
         <nav>
             <ul>
                 <li><a href="login.html">登录</a></li>
@@ -41,31 +41,8 @@
                 <li><a href="contact.html">联系我们</a></li>
             </ul>
         </nav>
-    <label for="language-selector">选择语言:</label>
-    <select id="language-selector">
-        <option value="en">English</option>
-        <option value="zh">中文</option>
-        <option value="es">Español</option>
-        <option value="fr">Français</option>
-        <option value="de">Deutsch</option>
-        <option value="it">Italiano</option>
-        <option value="ja">日本語</option>
-        <option value="ru">Русский</option>
-    </select>
-    <script src="languages.js"></script>
-    <script>
-        const languageSelector = document.getElementById('language-selector');
-        languageSelector.addEventListener('change', (event) => {
-            const lang = event.target.value;
-            updateLanguage(lang);
-        });
+        </header>
 
-        function updateLanguage(lang) {
-            document.getElementById('header').textContent = translations[lang].header;
-            document.getElementById('description').textContent = translations[lang].description;
-            document.getElementById('page-title').textContent = translations[lang].title;
-        }
-    </script>
     <footer>
         <p>&copy; 2024 旅途记. 保留所有权利.</p>
     </footer>
