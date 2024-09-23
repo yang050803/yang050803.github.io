@@ -50,12 +50,12 @@
     </section>
     <script>
        $(document).ready(function() {
-    const currentUser = localStorage.getItem('currentUser');
-    const bookings = JSON.parse(localStorage.getItem(currentUser)) || [];
-    bookings.forEach(booking => {
-        $('#booking-list').append(`<li>目的地: ${booking.destination} - 日期: ${booking.date}</li>`);
-    });
-});
+            // 从 localStorage 获取预订记录
+            const bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+            bookings.forEach(booking => {
+                $('#booking-list').append(`<li>目的地: ${booking.destination} - 日期: ${booking.date}</li>`);
+            });
+        });
     </script>
    
     
