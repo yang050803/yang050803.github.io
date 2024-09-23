@@ -95,21 +95,23 @@
     </section>
     <script>
         $(document).ready(function() {
-            $('#bookingForm').submit(function(event) {
-                event.preventDefault();
-                const destination = $('#destination').val();
-                const date = $('#date').val();
-                const booking = { destination, date };
+    const currentUser = localStorage.getItem('currentUser');
+    $('#bookingForm').submit(function(event) {
+        event.preventDefault();
+        const destination = $('#destination').val();
+        const date = $('#date').val();
+        const booking = { destination, date };
 
-                // 存储到 localStorage
-                let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
-                bookings.push(booking);
-                localStorage.setItem('bookings', JSON.stringify(bookings));
+        // 获取当前用户的预订记录
+        let userBookings = JSON.parse(localStorage.getItem(currentUser)) || [];
+        userBookings.push(booking);
+        localStorage.setItem(currentUser, JSON.stringify(userBookings));
 
-                alert(`预订成功: 目的地 - ${destination}, 日期 - ${date}`);
-                $(this).trigger('reset'); // 清空表单
-            });
-        });
+        alert(`预订成功: 目的地 - ${destination}, 日期 - ${date}`);
+        $(this).trigger('reset');
+    });
+});
+
     </script>
 <footer style="position: fixed; bottom: 0; left: 0; width: 100%; text-align: center; background-color: white; padding: 10px;">
     <p>&copy; 2024 旅途记. 保留所有权利.</p>
