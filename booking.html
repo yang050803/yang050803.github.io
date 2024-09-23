@@ -93,6 +93,8 @@
 
                 alert(`预订成功: 目的地 - ${destination}, 日期 - ${date}`);
                 $(this).trigger('reset'); // 清空表单
+                // 可选择跳转到个人中心
+            window.location.href = 'personal-center.html';
             });
         });
     </script>
