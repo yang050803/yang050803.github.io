@@ -39,13 +39,22 @@
         <a href="booking.html">点击这里进行预订</a>
     </section>
     <script>
-        $(document).ready(function() {
-            // 从 localStorage 获取预订记录
-            const bookings = JSON.parse(localStorage.getItem('bookings')) || [];
-            bookings.forEach(booking => {
-                $('#booking-list').append(`<li>目的地: ${booking.destination} - 日期: ${booking.date}</li>`);
-            });
-        });
+       $(document).ready(function() {
+    const currentUser = localStorage.getItem('currentUser');
+    const bookings = JSON.parse(localStorage.getItem(currentUser)) || [];
+    bookings.forEach(booking => {
+        $('#booking-list').append(`<li>目的地: ${booking.destination} - 日期: ${booking.date}</li>`);
+    });
+});
+    </script>
+    <button onclick="logout()">登出</button>
+    <script>
+        function logout() {
+            // 在这里添加登出逻辑
+            alert("您已成功登出！");
+            // 例如，可以重定向到登录页面
+            window.location.href = 'login.html'; 
+        }
     </script>
     <footer>
         <p>&copy; 2024 旅途记. 保留所有权利.</p>
