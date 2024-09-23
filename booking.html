@@ -78,14 +78,23 @@
         </form>
     </section>
     <script>
-    // 表单提交事件处理
-    $(document).ready(function() {
-    $('#bookingForm').submit(function(event) {
-        event.preventDefault();
-        alert('预订成功！');
-    });
-});
-</script>
+        $(document).ready(function() {
+            $('#bookingForm').submit(function(event) {
+                event.preventDefault();
+                const destination = $('#destination').val();
+                const date = $('#date').val();
+                const booking = { destination, date };
+
+                // 存储到 localStorage
+                let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+                bookings.push(booking);
+                localStorage.setItem('bookings', JSON.stringify(bookings));
+
+                alert(`预订成功: 目的地 - ${destination}, 日期 - ${date}`);
+                $(this).trigger('reset'); // 清空表单
+            });
+        });
+    </script>
 </footer>
 <p>&copy; 2024 旅途记. 保留所有权利.</p>
 </footer>
