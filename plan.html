@@ -46,22 +46,24 @@
         <form class="itinerary-planner">
             <h3>行程规划</h3>
             <input type="text" id="destination-input" placeholder="输入目的地">
-            <button onclick="addToItinerary()">添加到行程</button>
+           <button onclick="addToItinerary(event)">添加到行程</button>
             <ul id="itinerary-list"></ul>
         </form>        
     </section>
     <script>
-        function addToItinerary() {
-            const destination = document.getElementById('destination-input').value.trim();
-            if (!destination) return; // 如果输入为空，直接返回
-            const itineraryList = document.getElementById('itinerary-list');
-            const listItem = document.createElement('li');
-            listItem.textContent = destination;
-            itineraryList.appendChild(listItem);
+        function addToItinerary(event) {
+    event.preventDefault(); // 阻止表单提交
+    const destination = document.getElementById('destination-input').value.trim();
+    if (!destination) return; // 如果输入为空，直接返回
+    const itineraryList = document.getElementById('itinerary-list');
+    const listItem = document.createElement('li');
+    listItem.textContent = destination;
+    itineraryList.appendChild(listItem);
 
-            // 清空输入框
-            document.getElementById('destination-input').value = '';
-        }
+    // 清空输入框
+    document.getElementById('destination-input').value = '';
+}
+
     </script>
      </footer>
      <p>&copy; 2024 旅途记. 保留所有权利.</p>
