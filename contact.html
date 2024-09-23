@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旅途记</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #map { width: 100%; height: 500px; }
+    </style>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        section { margin: 20px; }
+        #personal-center { margin-top: 40px; }
+    </style>
+    <script src="https://api.map.baidu.com/api?v=3.0&ak=8SijYThTdtDr8UZSUiA9w3ioVAX6Ib2G"></script>
+    <script>
+        function toggleDetails(button) {
+            const details = button.nextElementSibling;
+            details.style.display = details.style.display === 'none' ? 'block' : 'none';
+        }
+        </script>
+        
+</head>
+<body>
+    <header>
+        <h1>欢迎来到旅途记</h1>
+        <nav>
+            <ul>
+                <li><a href="login.html">登录</a></li>
+                <li><a href="foreign destinations.html">出境游</a></li>
+                <li><a href="domestic destinations.html">国内游</a></li>
+                <li><a href="booking.html">在线预订</a></li>
+                <li><a href="plan.html">行程规划</a></li>
+                <li><a href="weather.html">实时天气</a></li>
+                <li><a href="map.html">地图</a></li>
+                <li><a href="comment.html">用户评论</a></li>
+                <li><a href="personal-center.html">个人中心</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="contact">
+        <h2>联系我们</h2>
+        <form id="contactForm">
+            <label for="email">邮箱:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">留言:</label>
+            <textarea id="message" name="message" required></textarea>
+            <input type="submit" value="发送">
+        </form>
+    </section>
+    <script>
+         $('#contactForm').submit(function(event) {
+        event.preventDefault();
+        alert('留言发送成功！');
+    });
+    </script>
+</footer>
+<p>&copy; 2024 旅途记. 保留所有权利.</p>
+</footer>
+</body>
+</html>    

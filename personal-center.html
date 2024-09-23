@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旅途记</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <iframe src="booking.html" style="display:none;" id="bookingForm"></iframe>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        section { margin: 20px; }
+        #personal-center { margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>欢迎来到旅途记</h1>
+        <nav>
+            <ul>
+                <li><a href="login.html">登录</a></li>
+                <li><a href="foreign destinations.html">出境游</a></li>
+                <li><a href="domestic destinations.html">国内游</a></li>
+                <li><a href="booking.html">在线预订</a></li>
+                <li><a href="plan.html">行程规划</a></li>
+                <li><a href="weather.html">实时天气</a></li>
+                <li><a href="map.html">地图</a></li>
+                <li><a href="comment.html">用户评论</a></li>
+                <li><a href="personal-center.html">个人中心</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="personal-center">
+        <h2>个人中心</h2>
+        <h3>预订记录</h3>
+        <ul id="booking-list"></ul>
+    </section>
+    <script>
+        document.getElementById('bookingForm').addEventListener('load', function() {
+            const bookingForm = this.contentWindow.document.getElementById('bookingForm');
+            bookingForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // 阻止默认提交行为
+
+                const destination = document.getElementById('destination').value;
+                const date = document.getElementById('date').value;
+
+                const newBooking = `目的地: ${destination} - 日期: ${date}`;
+
+                const bookingList = document.getElementById('booking-list');
+                const newListItem = document.createElement('li');
+                newListItem.textContent = newBooking;
+                bookingList.appendChild(newListItem);
+
+                this.reset(); // 清空表单
+            });
+        });
+    </script>
+    <footer>
+        <p>&copy; 2024 旅途记. 保留所有权利.</p>
+    </footer>
+</body>
+</html>
