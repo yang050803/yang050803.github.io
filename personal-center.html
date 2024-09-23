@@ -48,12 +48,23 @@
         <a href="booking.html">点击这里进行预订</a>
          <button onclick="logout()">登出</button>
     </section>
-    <script>
-       $(document).ready(function() {
-            // 从 localStorage 获取预订记录
-            const bookings = JSON.parse(localStorage.getItem('bookings')) || [];
-            bookings.forEach(booking => {
-                $('#booking-list').append(`<li>目的地: ${booking.destination} - 日期: ${booking.date}</li>`);
+   <script>
+        document.getElementById('bookingForm').addEventListener('load', function() {
+            const bookingForm = this.contentWindow.document.getElementById('bookingForm');
+            bookingForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // 阻止默认提交行为
+
+                const destination = document.getElementById('destination').value;
+                const date = document.getElementById('date').value;
+
+                const newBooking = `目的地: ${destination} - 日期: ${date}`;
+
+                const bookingList = document.getElementById('booking-list');
+                const newListItem = document.createElement('li');
+                newListItem.textContent = newBooking;
+                bookingList.appendChild(newListItem);
+
+                this.reset(); // 清空表单
             });
         });
     </script>
