@@ -1,26 +1,29 @@
 (async function() {
-    // 获取所有文本节点
-    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-    const nodes = [];
+    const languageSelect = document.getElementById('languageSelect');
 
-    while (walker.nextNode()) {
-        nodes.push(walker.currentNode);
-    }
-
-    // 过滤掉空文本节点
-    const textsToTranslate = nodes.map(node => node.textContent.trim()).filter(text => text);
-
-    // 自动翻译
-    const translatedTexts = await Promise.all(textsToTranslate.map(text => translateText(text, 'es'))); // 选择目标语言
-
-    // 替换原有文本
-    nodes.forEach((node, index) => {
-        if (translatedTexts[index]) {
-            node.textContent = translatedTexts[index];
-        }
+    languageSelect.addEventListener('change', async () => {
+        const selectedLanguage = languageSelect.value;
+        await translatePage(selectedLanguage);
     });
 
-    // 翻译函数
+    async function translatePage(targetLanguage) {
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+        const nodes = [];
+        
+        while (walker.nextNode()) {
+            nodes.push(walker.currentNode);
+        }
+
+        const textsToTranslate = nodes.map(node => node.textContent.trim()).filter(text => text);
+        const translatedTexts = await Promise.all(textsToTranslate.map(text => translateText(text, targetLanguage)));
+
+        nodes.forEach((node, index) => {
+            if (translatedTexts[index]) {
+                node.textContent = translatedTexts[index];
+            }
+        });
+    }
+
     async function translateText(text, targetLanguage) {
         const response = await fetch('https://libretranslate.com/translate', {
             method: 'POST',
