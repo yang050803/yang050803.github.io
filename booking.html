@@ -79,32 +79,22 @@
         </form>
     </section>
     <script>
-        $('#bookingForm button').click(function() {
-    console.log('按钮被点击');
-});
-
         $(document).ready(function() {
-    const currentUser = localStorage.getItem('currentUser');
-    console.log('当前用户:', currentUser); // 检查当前用户
-    $('#bookingForm').submit(function(event) {
-        event.preventDefault();
-        const destination = $('#destination').val();
-        const date = $('#date').val();
-        console.log('目的地:', destination, '日期:', date); // 检查输入值
+            $('#bookingForm').submit(function(event) {
+                event.preventDefault();
+                const destination = $('#destination').val();
+                const date = $('#date').val();
+                const booking = { destination, date };
 
-        const booking = { destination, date };
+                // 存储到 localStorage
+                let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+                bookings.push(booking);
+                localStorage.setItem('bookings', JSON.stringify(bookings));
 
-        // 获取当前用户的预订记录
-        let userBookings = JSON.parse(localStorage.getItem(currentUser)) || [];
-        userBookings.push(booking);
-        localStorage.setItem(currentUser, JSON.stringify(userBookings));
-
-        alert(`预订成功: 目的地 - ${destination}, 日期 - ${date}`);
-        $(this).trigger('reset');
-    });
-});
-
-
+                alert(`预订成功: 目的地 - ${destination}, 日期 - ${date}`);
+                $(this).trigger('reset'); // 清空表单
+            });
+        });
     </script>
 <footer>
 <p>&copy; 2024 旅途记. 保留所有权利.</p>
