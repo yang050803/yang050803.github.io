@@ -81,10 +81,13 @@
     <script>
         $(document).ready(function() {
     const currentUser = localStorage.getItem('currentUser');
+    console.log('当前用户:', currentUser); // 检查当前用户
     $('#bookingForm').submit(function(event) {
         event.preventDefault();
         const destination = $('#destination').val();
         const date = $('#date').val();
+        console.log('目的地:', destination, '日期:', date); // 检查输入值
+
         const booking = { destination, date };
 
         // 获取当前用户的预订记录
@@ -96,6 +99,7 @@
         $(this).trigger('reset');
     });
 });
+
 
     </script>
 <footer style="position: fixed; bottom: 0; left: 0; width: 100%; text-align: center; background-color: white; padding: 10px;">
