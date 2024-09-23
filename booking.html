@@ -79,6 +79,10 @@
         </form>
     </section>
     <script>
+        $('#bookingForm button').click(function() {
+    console.log('按钮被点击');
+});
+
         $(document).ready(function() {
     const currentUser = localStorage.getItem('currentUser');
     console.log('当前用户:', currentUser); // 检查当前用户
