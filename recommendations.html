@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旅途记</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .recommendations {
+            margin-top: 20px;
+        }
+        .recommendation {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>欢迎来到旅途记</h1>
+        <nav>
+            <ul>
+                <li><a href="login.html">登录</a></li>
+                <li><a href="foreign destinations.html">出境游</a></li>
+                <li><a href="domestic destinations.html">国内游</a></li>
+                <li><a href="recommendations.html">旅游探索器</a></li>
+                <li><a href="booking.html">在线预订</a></li>
+                <li><a href="plan.html">行程规划</a></li>
+                <li><a href="weather.html">实时天气</a></li>
+                <li><a href="map.html">地图</a></li>
+                <li><a href="comment.html">用户评论</a></li>
+                <li><a href="personal-center.html">个人中心</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h3>旅游探索器</h1>
+    <label for="userInput">输入您的兴趣（如：海滩、山脉、城市）:</label>
+    <input type="text" id="userInput" placeholder="例如：海滩">
+    <button onclick="getRecommendations()">获取推荐</button>
+
+    <div class="recommendations" id="recommendations"></div>
+
+    <script>
+        const destinations = {
+    "海滩": ["海南", "马尔代夫", "巴厘岛", "夏威夷", "塞舌尔", "普吉岛", "毛里求斯", "西班牙海岸", "卡普里岛", "巴哈马"],
+    "山脉": ["青藏高原", "阿尔卑斯山", "喜马拉雅山", "洛基山脉", "安第斯山脉", "大雪山", "阿巴拉契亚山", "喀尔巴阡山", "乌鲁鲁"],
+    "城市": ["北京", "上海", "东京", "纽约", "伦敦", "巴黎", "悉尼", "香港", "洛杉矶", "新德里"],
+    "历史": ["长城", "兵马俑", "罗马斗兽场", "古埃及金字塔", "雅典卫城", "玛雅遗址", "佩特拉古城", "克鲁姆洛夫", "斯特拉斯堡大教堂"],
+    "美食": ["成都", "东京", "巴黎", "米兰", "新加坡", "墨西哥城", "曼谷", "伊斯坦布尔", "香港", "巴塞罗那"],
+    "冒险": ["亚马逊雨林", "大堡礁", "南极探险", "珠穆朗玛峰", "冰岛火山", "斯里兰卡热气球", "北极探险", "喀斯特地貌", "南极洲"],
+    "文化": ["京都", "拉萨", "伊斯坦布尔", "班加罗尔", "开罗", "布拉格", "赫尔辛基", "佛罗伦萨", "巴厘岛", "摩洛哥"],
+    "自然风光": ["黄山", "大峡谷", "黄石国家公园", "普罗旺斯", "托斯卡纳", "冰河湖", "诺尔卡尔峡湾", "科罗拉多高原", "丹麦小美人鱼", "瑞士湖泊"],
+    "节庆活动": ["慕尼黑啤酒节", "巴西狂欢节", "威尼斯狂欢节", "洛杉矶电影节", "东京樱花节", "新奥尔良狂欢节", "西班牙奔牛节", "庆祝灯节", "格拉斯顿伯里音乐节"],
+    "野生动物": ["肯尼亚马赛马拉", "南非克鲁格国家公园", "加拉帕戈斯群岛", "巴西亚马逊", "印度虎保护区", "斯瓦科普蒙德", "南极企鹅观光"],
+    "极限运动": ["新西兰蹦极", "夏威夷冲浪", "瑞士滑雪", "阿根廷攀岩", "南非跳伞", "美国滑翔伞", "摩洛哥沙漠越野"],
+    "家庭友好": ["迪士尼乐园", "环球影城", "乐高乐园", "海洋公园", "东京迪士尼", "新加坡动物园", "加勒比海游轮"],
+    "夜生活": ["拉斯维加斯", "巴塞罗那", "迈阿密", "柏林", "曼谷", "东京", "阿姆斯特丹", "悉尼"],
+    "疗养度假": ["巴厘岛水疗", "泰国健康度假村", "马尔代夫蜜月酒店", "瑞士阿尔卑斯温泉", "日本温泉"],
+    "摄影天堂": ["冰岛瀑布", "意大利五渔村", "日本樱花", "美国黄石公园", "新西兰南岛"]
+};
+
+        function getRecommendations() {
+            const userInput = document.getElementById('userInput').value.trim();
+            const recommendationsDiv = document.getElementById('recommendations');
+            recommendationsDiv.innerHTML = ''; // 清空之前的推荐
+            
+            if (destinations[userInput]) {
+                const places = destinations[userInput];
+                places.forEach(place => {
+                    const recommendation = document.createElement('div');
+                    recommendation.classList.add('recommendation');
+                    recommendation.textContent = place;
+                    recommendationsDiv.appendChild(recommendation);
+                });
+            } else {
+                recommendationsDiv.textContent = '没有找到相关推荐。';
+            }
+        }
+    </script>
+</body>
+</html>
