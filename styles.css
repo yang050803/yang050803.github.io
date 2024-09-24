@@ -2,8 +2,8 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('path/to/your/image.jpg'); /* 替换为你的图片路径 */
-    background-size: contain; /* 让图片覆盖整个视口 */
+    background-image: url('background.jpg'); /* 替换为你的图片路径 */
+    background-size: cover; /* 让图片覆盖整个视口 */
     background-position: center; /* 图片居中显示 */
     background-repeat: no-repeat; /* 不重复图片 */
     color: #333;
