@@ -5,12 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>旅途记</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         #map { width: 100%; height: 500px; }
-    </style>
-    <style>
         body { font-family: Arial, sans-serif; }
         section { margin: 20px; }
         #personal-center { margin-top: 40px; }
@@ -21,8 +18,23 @@
             const details = button.nextElementSibling;
             details.style.display = details.style.display === 'none' ? 'block' : 'none';
         }
-        </script>
         
+        function submitReview(event) {
+            event.preventDefault(); // 防止页面刷新
+            
+            const username = document.getElementById('username').value;
+            const reviewText = document.getElementById('review-text').value;
+    
+            const reviewList = document.getElementById('review-list');
+            const reviewItem = document.createElement('div');
+            reviewItem.innerHTML = `<strong>${username}</strong>: ${reviewText}`;
+            reviewList.appendChild(reviewItem);
+    
+            // 清空输入框
+            document.getElementById('username').value = '';
+            document.getElementById('review-text').value = '';
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -43,35 +55,20 @@
             </ul>
         </nav>
     </header>
-    <section id="comment"></section>
-        <form class="reviews">
+    <section id="comment">
+        <form class="reviews" onsubmit="submitReview(event)">
            <h3>用户评论</h3>
            <div id="review-form">
               <input type="text" id="username" placeholder="你的名字">
               <textarea id="review-text" placeholder="分享你的经历"></textarea>
-              <button onclick="submitReview()">提交评论</button>
+              <button type="button" onclick="submitReview(event)">提交评论</button>
            </div>
-          <div id="review-list"></div>
+           <div id="review-list"></div>
         </form>
     </section>
-<script>
-    function submitReview() {
-        const username = document.getElementById('username').value;
-        const reviewText = document.getElementById('review-text').value;
-    
-        const reviewList = document.getElementById('review-list');
-        const reviewItem = document.createElement('div');
-        reviewItem.innerHTML = `<strong>${username}</strong>: ${reviewText}`;
-        reviewList.appendChild(reviewItem);
-    
-        // 清空输入框
-        document.getElementById('username').value = '';
-        document.getElementById('review-text').value = '';
-    };
-   
-</script>
-<footer>
-<p>&copy; 2024 旅途记. 保留所有权利.</p>
-</footer>
+    <footer>
+        <p>&copy; 2024 旅途记. 保留所有权利.</p>
+    </footer>
 </body>
 </html>
+
