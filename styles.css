@@ -58,12 +58,12 @@ max-width: 90%;
 .foreign.destination-list {
 display: flex;
 flex-wrap: wrap;
-justify-content: center; /* 居中对齐 /
+justify-content: center; /* 居中对齐 */
 }
 .domestic.destination-list {
 display: flex;
 flex-wrap: wrap;
-justify-content: center; / 居中对齐 /
+justify-content: center; /* 居中对齐 */
 }
 .foreign.destination {
 background-color: #f9f9f9;
@@ -71,9 +71,9 @@ border: 1px solid #ddd;
 border-radius: 5px;
 padding: 15px;
 margin: 10px;
-flex: 1 0 30%; / 在较大屏幕上占30%宽度 /
+flex: 1 0 30%; /* 在较大屏幕上占30%宽度 */
 box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-transition: transform 0.2s; / 添加动画效果 /
+transition: transform 0.2s; /* 添加动画效果 */
 }
 .domestic.destination {
 background-color: #f9f9f9;
@@ -81,12 +81,12 @@ border: 1px solid #ddd;
 border-radius: 5px;
 padding: 15px;
 margin: 10px;
-flex: 1 0 30%; / 在较大屏幕上占30%宽度 /
+flex: 1 0 30%; /* 在较大屏幕上占30%宽度 */
 box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-transition: transform 0.2s; / 添加动画效果 /
+transition: transform 0.2s; /* 添加动画效果 */
 }
 .foreign.destination:hover {
-transform: scale(1.05); / 鼠标悬停时放大 */
+transform: scale(1.05); /* 鼠标悬停时放大 */
 }
 
 .foreign.destination img {
@@ -159,11 +159,11 @@ footer {
 /* 媒体查询以优化小屏幕布局 */
 @media (max-width: 768px) {
 .foreign.destination {
-flex: 1 0 30%; / 小屏幕时每个目的地占满100%宽度 */
+flex: 1 0 30%; /* 小屏幕时每个目的地占满30%宽度 */
 }
     @media (max-width: 768px) {
 .domestic.destination {
-flex: 1 0 30%; / 小屏幕时每个目的地占满100%宽度 */
+flex: 1 0 30%; /* 小屏幕时每个目的地占满30%宽度 */
 }
 
 nav ul {
