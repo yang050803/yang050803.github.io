@@ -9,7 +9,12 @@ body {
     color: #333;
 }
 
-
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
 header {
 background-color: #4CAF50;
 color: white;
@@ -148,10 +153,14 @@ footer {
     color: white;
 }
 
-/* 媒体查询以优化小屏幕布局 /
+/* 媒体查询以优化小屏幕布局 */
 @media (max-width: 768px) {
-.destination {
-flex: 1 0 100%; / 小屏幕时每个目的地占满100%宽度 */
+.foreign.destination {
+flex: 1 0 30%; / 小屏幕时每个目的地占满100%宽度 */
+}
+    @media (max-width: 768px) {
+.domestic.destination {
+flex: 1 0 30%; / 小屏幕时每个目的地占满100%宽度 */
 }
 
 nav ul {
