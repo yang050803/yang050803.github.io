@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>旅途记</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   <style>
+    <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
@@ -36,6 +35,7 @@
             color: #555;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <header>
@@ -56,7 +56,8 @@
             </ul>
         </nav>
     </header>
-    <h3>旅游探索器</h1>
+
+    <h3>旅游探索器</h3>
     <label for="userInput">输入您的兴趣（如：海滩、山脉、城市）:</label>
     <input type="text" id="userInput" placeholder="例如：海滩">
     <button onclick="getRecommendations()">获取推荐</button>
@@ -65,77 +66,68 @@
 
     <script>
         const destinations = {
-    "海滩": ["海南", "马尔代夫", "巴厘岛", "夏威夷", "塞舌尔", "普吉岛", "毛里求斯", "西班牙海岸", "卡普里岛", "巴哈马"],
-    "山脉": ["青藏高原", "阿尔卑斯山", "喜马拉雅山", "洛基山脉", "安第斯山脉", "大雪山", "阿巴拉契亚山", "喀尔巴阡山", "乌鲁鲁"],
-    "城市": ["北京", "上海", "东京", "纽约", "伦敦", "巴黎", "悉尼", "香港", "洛杉矶", "新德里"],
-    "历史": ["长城", "兵马俑", "罗马斗兽场", "古埃及金字塔", "雅典卫城", "玛雅遗址", "佩特拉古城", "克鲁姆洛夫", "斯特拉斯堡大教堂"],
-    "美食": ["成都", "东京", "巴黎", "米兰", "新加坡", "墨西哥城", "曼谷", "伊斯坦布尔", "香港", "巴塞罗那"],
-    "冒险": ["亚马逊雨林", "大堡礁", "南极探险", "珠穆朗玛峰", "冰岛火山", "斯里兰卡热气球", "北极探险", "喀斯特地貌", "南极洲"],
-    "文化": ["京都", "拉萨", "伊斯坦布尔", "班加罗尔", "开罗", "布拉格", "赫尔辛基", "佛罗伦萨", "巴厘岛", "摩洛哥"],
-    "自然风光": ["黄山", "大峡谷", "黄石国家公园", "普罗旺斯", "托斯卡纳", "冰河湖", "诺尔卡尔峡湾", "科罗拉多高原", "丹麦小美人鱼", "瑞士湖泊"],
-    "节庆活动":[
-		{name:"慕尼黑啤酒节",img:" amunihei.jpg",description:"尽情享受德国啤酒和传统美食的狂欢盛宴。"},
-		{name:"威尼斯狂欢节",img:" aweinisi.jpg",description:"华丽面具和华服下的神秘舞会，洋溢着浪漫与历史。"},
-		{name:"洛杉矶电影节",img:" aluoshanji.jpg",description:"电影爱好者聚集一堂，探讨艺术与娱乐的结合。"},
-		{name:"东京樱花节",img:" adongjing.jpg",description:"在樱花树下，感受春天的温柔与日本文化的魅力。"},
-		{name:"新奥尔良狂欢节",img:" axinaoerliang.jpg",description:"色彩斑斓的游行与音乐庆典，充满活力与欢笑。"},
-		{name:"西班牙奔牛节",img:" axibanya.jpg",description:"挑战极限与勇气的盛事，狂热奔跑在狭窄街道上。"},
-		{name:"庆祝灯节",img:" aqingzhu.jpg",description:"五彩缤纷的灯光照亮夜空，象征着希望与团圆。"},
-		{name:"格拉斯顿伯里音乐节",img:" agelasidun.jpg",description:"音乐、艺术与自由精神的汇聚，打造难忘的现场体验。"}
-			],
-	"野生动物"[
-		{name:"肯尼亚马赛马拉",img:" akenniya.jpg",description:"壮丽的野生动物迁徙与非洲草原的自然奇观。"},
-		{name:"南非克鲁格国家公园",img:" ananfei.jpg",description:"一个庇护所，栖息着多种壮观的动物，尽显自然之美。"},
-		{name:"加拉帕戈斯群岛",img:" ajialapa.jpg",description:"独特的生态系统，让你亲近稀有物种与自然奇迹。"},
-		{name:"巴西亚马逊",img:" abaxi.jpg",description:"原始雨林的神秘探险，体验多样的生物与土著文化。"},
-		{name:"印度虎保护区",img:" ayindu.jpg",description:"保护华丽的孟加拉虎，感受野生动物的壮丽与脆弱。"},
-		{name:"斯瓦科普蒙德",img:" asiwake.jpg",description:"沙漠与海洋交汇之处，体验冒险与宁静的结合。"},
-		{name:"南极企鹅观光",img:" ananji.jpg",description:"亲密接触可爱的企鹅，在冰雪世界中感受奇妙。"}
-			],
-	"极限运动"[
-		{name:"新西兰蹦极",img:" abengji.jpg",description:"在壮丽的自然背景中体验极限刺激与自由落体的快感。"},
-		{name:"夏威夷冲浪",img:" achonglang.jpg",description:"在温暖海浪中畅游，享受阳光与海洋的完美结合。"},
-		{name:"瑞士滑雪",img:" ahuaxue.jpg",description:"滑行在阿尔卑斯山脉的白雪皑皑之中，尽享滑雪的乐趣。"},
-		{name:"阿根廷攀岩",img:" apanyan.jpg",description:"在壮丽的山脉中挑战自我，感受自然的力量与美。"},
-		{name:"南非跳伞",img:" atiaosan.jpg",description:"在壮观的南非风景上空自由飞翔，体验极致的快感。"},
-		{name:"美国滑翔伞",img:" ahuaxiangsan.jpg",description:"在风中飞翔，俯瞰美丽的自然景观与城市轮廓。"},
-		{name:"摩洛哥沙漠越野",img:" ayueye.jpg",description:"在广袤的沙漠中探险，感受异国风情与刺激。"}
-			],
-	"家庭友好"[
-		{name:"迪士尼乐园",img:" adishini.jpg",description:"童话世界中的乐趣与梦想，适合各个年龄段的欢笑。"},
-		{name:"环球影城",img:" ahuanqiu.jpg",description:"沉浸于电影世界的奇幻与刺激，体验前所未有的冒险。"},
-		{name:"乐高公园",img:" alegao.jpg",description:"创意与乐趣交织，让孩子们在玩乐中学习与探索。"},
-		{name:"海洋公园",img:" ahaiyang.jpg",description:"与海洋生物亲密接触，享受水上乐趣与表演的奇迹。"},
-		{name:"东京迪士尼",img:" addishini.jpg",description:"融合日本文化的梦幻乐园，带你进入奇妙的幻想世界。"},
-		{name:"新加坡动物园",img:" adongwu.jpg",description:"展现多样的动植物，亲身感受自然的奇迹与保护。"},
-		{name:"加勒比海游轮",img:" ahaiyou.jpg",description:"在蔚蓝海域中悠然航行，享受阳光、沙滩与美食。"}
-			],
-	"夜生活"[
-		{name:"拉斯维加斯",img:" alasi.jpg",description:"闪耀的灯光与无限娱乐的城市，体验奢华与刺激。"},
-		{name:"巴塞罗那",img:" abasai.jpg",description:"艺术与建筑交融之地，感受高迪的创意与城市的魅力。"},
-		{name:"迈阿密",img:" amaiami.jpg",description:"热情洋溢的海滩与多元文化的交融，尽享阳光与夜生活。"},
-		{name:"柏林",img:" abolin.jpg",description:"历史与现代交汇的城市，充满文化、艺术与创新的氛围。"},
-		{name:"曼谷",img:" amangu.jpg",description:"热闹的市集与精致的寺庙，呈现出丰富的泰国文化。"},
-		{name:"东京",img:" aadongjing.jpg",description:"繁华的都市与独特的文化，让人感受到科技与传统的结合。"},
-		{name:"阿姆斯特丹",img:" aamusi.jpg",description:"美丽的运河与艺术氛围，骑行探索这座迷人的城市。"},
-		{name:"悉尼",img:" axini.jpg",description:"标志性的歌剧院与美丽海滩，展现了澳大利亚的魅力与活力。"}
-			],
-	"疗养度假"[
-		{name:"巴厘岛水疗",img:" abalidao.jpg",description:"宁静的环境中享受身心的放松与舒适。"},
-		{name:"泰国健康度假村",img:" ataiguo.jpg",description:"提供养生与疗愈的体验，重拾身心的平衡与宁静。"},
-		{name:"马尔代夫蜜月酒店",img:" amaerdaifu.jpg",description:"梦幻般的海岛逃离，享受浪漫与私密的时光。"},
-		{name:"瑞士阿尔卑斯温泉",img:" aruishi.jpg",description:"在山脉的怀抱中放松身心，享受天然的温泉体验。"},
-		{name:"日本温泉",img:" awenquan.jpg",description:"体验传统的温泉文化，感受疗愈与放松的魔力。"}
-			],
-	"摄影天堂"[
-		{name:"冰岛瀑布",img:" abingdao.jpg",description:"壮观的自然奇观，令人心旷神怡的冰雪之旅。"},
-		{name:"意大利五渔村",img:" ayidali.jpg",description:"迷人的海岸线与彩色房屋，散发着独特的魅力。"},
-		{name:"日本樱花",img:" ayinghua.jpg",description:"春天的美丽盛开，象征着短暂而珍贵的生命。"},
-		{name:"美国黄石公园",img:" ahuangshi.jpg",description:"壮丽的自然景观与丰富的地热奇观，展现大自然的力量。"},
-		{name:"新西兰南岛",img:" anandao.jpg",description:"壮观的山脉与迷人的湖泊，完美融合了冒险与宁静。"}
-			]
-
-};
+            "极限运动": [
+                {name: "新西兰蹦极", img: "abengji.jpg", description: "在壮丽的自然背景中体验极限刺激与自由落体的快感。"},
+                {name: "夏威夷冲浪", img: "achonglang.jpg", description: "在温暖海浪中畅游，享受阳光与海洋的完美结合。"},
+                {name: "瑞士滑雪", img: "ahuaxue.jpg", description: "滑行在阿尔卑斯山脉的白雪皑皑之中，尽享滑雪的乐趣。"},
+                {name: "阿根廷攀岩", img: "apanyan.jpg", description: "在壮丽的山脉中挑战自我，感受自然的力量与美。"},
+                {name: "南非跳伞", img: "atiaosan.jpg", description: "在壮观的南非风景上空自由飞翔，体验极致的快感。"},
+                {name: "美国滑翔伞", img: "ahuaxiangsan.jpg", description: "在风中飞翔，俯瞰美丽的自然景观与城市轮廓。"},
+                {name: "摩洛哥沙漠越野", img: "ayueye.jpg", description: "在广袤的沙漠中探险，感受异国风情与刺激。"}
+            ],
+            "家庭友好": [
+                {name: "迪士尼乐园", img: "adishini.jpg", description: "童话世界中的乐趣与梦想，适合各个年龄段的欢笑。"},
+                {name: "环球影城", img: "ahuanqiu.jpg", description: "沉浸于电影世界的奇幻与刺激，体验前所未有的冒险。"},
+                {name: "乐高公园", img: "alegao.jpg", description: "创意与乐趣交织，让孩子们在玩乐中学习与探索。"},
+                {name: "海洋公园", img: "ahaiyang.jpg", description: "与海洋生物亲密接触，享受水上乐趣与表演的奇迹。"},
+                {name: "东京迪士尼", img: "addishini.jpg", description: "融合日本文化的梦幻乐园，带你进入奇妙的幻想世界。"},
+                {name: "新加坡动物园", img: "adongwu.jpg", description: "展现多样的动植物，亲身感受自然的奇迹与保护。"},
+                {name: "加勒比海游轮", img: "ahaiyou.jpg", description: "在蔚蓝海域中悠然航行，享受阳光、沙滩与美食。"}
+            ],
+            "夜生活": [
+                {name: "拉斯维加斯", img: "alasi.jpg", description: "闪耀的灯光与无限娱乐的城市，体验奢华与刺激。"},
+                {name: "巴塞罗那", img: "abasai.jpg", description: "艺术与建筑交融之地，感受高迪的创意与城市的魅力。"},
+                {name: "迈阿密", img: "amaiami.jpg", description: "热情洋溢的海滩与多元文化的交融，尽享阳光与夜生活。"},
+                {name: "柏林", img: "abolin.jpg", description: "历史与现代交汇的城市，充满文化、艺术与创新的氛围。"},
+                {name: "曼谷", img: "amangu.jpg", description: "热闹的市集与精致的寺庙，呈现出丰富的泰国文化。"},
+                {name: "东京", img: "aadongjing.jpg", description: "繁华的都市与独特的文化，让人感受到科技与传统的结合。"},
+                {name: "阿姆斯特丹", img: "aamusi.jpg", description: "美丽的运河与艺术氛围，骑行探索这座迷人的城市。"},
+                {name: "悉尼", img: "axini.jpg", description: "标志性的歌剧院与美丽海滩，展现了澳大利亚的魅力与活力。"}
+            ],
+            "疗养度假": [
+                {name: "巴厘岛水疗", img: "abalidao.jpg", description: "宁静的环境中享受身心的放松与舒适。"},
+                {name: "泰国健康度假村", img: "ataiguo.jpg", description: "提供养生与疗愈的体验，重拾身心的平衡与宁静。"},
+                {name: "马尔代夫蜜月酒店", img: "amaerdaifu.jpg", description: "梦幻般的海岛逃离，享受浪漫与私密的时光。"},
+                {name: "瑞士阿尔卑斯温泉", img: "aruishi.jpg", description: "在山脉的怀抱中放松身心，享受天然的温泉体验。"},
+                {name: "日本温泉", img: "awenquan.jpg", description: "体验传统的温泉文化，感受疗愈与放松的魔力。"}
+            ],
+            "摄影天堂": [
+                {name: "冰岛瀑布", img: "abingdao.jpg", description: "壮观的自然奇观，令人心旷神怡的冰雪之旅。"},
+                {name: "意大利五渔村", img: "ayidali.jpg", description: "迷人的海岸线与彩色房屋，散发着独特的魅力。"},
+                {name: "日本樱花", img: "ayinghua.jpg", description: "春天的美丽盛开，象征着短暂而珍贵的生命。"},
+                {name: "美国黄石公园", img: "ahuangshi.jpg", description: "壮丽的自然景观与丰富的地热奇观，展现大自然的力量。"},
+                {name: "新西兰南岛", img: "anandao.jpg", description: "壮观的山脉与迷人的湖泊，完美融合了冒险与宁静。"}
+            ],
+            "节庆活动": [
+                {name: "慕尼黑啤酒节", img: "amunihei.jpg", description: "尽情享受德国啤酒和传统美食的狂欢盛宴。"},
+                {name: "威尼斯狂欢节", img: "aweinisi.jpg", description: "华丽面具和华服下的神秘舞会，洋溢着浪漫与历史。"},
+                {name: "洛杉矶电影节", img: "aluoshanji.jpg", description: "电影爱好者聚集一堂，探讨艺术与娱乐的结合。"},
+                {name: "东京樱花节", img: "adongjing.jpg", description: "在樱花树下，感受春天的温柔与日本文化的魅力。"},
+                {name: "新奥尔良狂欢节", img: "axinaoerliang.jpg", description: "色彩斑斓的游行与音乐庆典，充满活力与欢笑。"},
+                {name: "西班牙奔牛节", img: "axibanya.jpg", description: "挑战极限与勇气的盛事，狂热奔跑在狭窄街道上。"},
+                {name: "庆祝灯节", img: "aqingzhu.jpg", description: "五彩缤纷的灯光照亮夜空，象征着希望与团圆。"},
+                {name: "格拉斯顿伯里音乐节", img: "agelasidun.jpg", description: "音乐、艺术与自由精神的汇聚，打造难忘的现场体验。"}
+            ],
+            "野生动物": [
+                {name: "肯尼亚马赛马拉", img: "akenniya.jpg", description: "壮丽的野生动物迁徙与非洲草原的自然奇观。"},
+                {name: "南非克鲁格国家公园", img: "ananfei.jpg", description: "一个庇护所，栖息着多种壮观的动物，尽显自然之美。"},
+                {name: "加拉帕戈斯群岛", img: "ajialapa.jpg", description: "独特的生态系统，让你亲近稀有物种与自然奇迹。"},
+                {name: "巴西亚马逊", img: "abaxi.jpg", description: "原始雨林的神秘探险，体验多样的生物与土著文化。"},
+                {name: "印度虎保护区", img: "ayindu.jpg", description: "保护华丽的孟加拉虎，感受野生动物的壮丽与脆弱。"},
+                {name: "斯瓦科普蒙德", img: "asiwake.jpg", description: "沙漠与海洋交汇之处，体验冒险与宁静的结合。"},
+                {name: "南极企鹅观光", img: "ananji.jpg", description: "亲密接触可爱的企鹅，在冰雪世界中感受奇妙。"}
+            ]
+        };
 
         function getRecommendations() {
             const userInput = document.getElementById('userInput').value.trim();
@@ -169,8 +161,10 @@
             }
         }
     </script>
+
     <footer>
-    <p>&copy; 2024 旅途记. 保留所有权利.</p>
-</footer>
+        <p>&copy; 2024 旅途记. 保留所有权利.</p>
+    </footer>
 </body>
 </html>
+
