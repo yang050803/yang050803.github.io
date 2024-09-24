@@ -3,8 +3,8 @@ body {
     margin: 0;
     padding: 0;
     background-image: url('background.jpg'); 
-    background-size: 30% auto; /* 宽度缩小到 80%，高度自动调整 */
-    background-position: bottom; /* 背景图片在左下角显示 */
+    background-size: 30% auto; /* 宽度缩小到 30%，高度自动调整 */
+    background-position: right bottom; /* 背景图片在右下角显示 */
     background-repeat: no-repeat; /* 不重复图片 */
     color: #333;
 }
