@@ -160,14 +160,13 @@ footer {
 @media (max-width: 768px) {
 .foreign.destination {
 flex: 1 0 30%; /* 小屏幕时每个目的地占满30%宽度 */
-}
+}}
     @media (max-width: 768px) {
 .domestic.destination {
 flex: 1 0 30%; /* 小屏幕时每个目的地占满30%宽度 */
-}
+}}
 
 nav ul {
     flex-direction: column; /* 导航在小屏幕上垂直排列 */
     align-items: center; /* 居中对齐 */
-}
 }
