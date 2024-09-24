@@ -4,10 +4,11 @@ body {
     padding: 0;
     background-image: url('background.jpg'); /* 替换为你的图片路径 */
     background-size: cover; /* 让图片覆盖整个视口 */
-    background-position: center; /* 图片居中显示 */
+    background-position: bottom; /* 背景图片在底部显示 */
     background-repeat: no-repeat; /* 不重复图片 */
     color: #333;
 }
+
 
 html, body {
     height: 100%;
@@ -25,8 +26,8 @@ text-align: center;
 nav ul {
 list-style-type: none;
 padding: 0;
-display: flex; /* 使用 flexbox /
-justify-content: center; / 居中对齐 */
+display: flex; /* 使用 flexbox */
+justify-content: center; /* 居中对齐 */
 }
 
 nav ul li {
@@ -109,9 +110,11 @@ height: auto;
 color: #4CAF50;
 }
 form {
-display: flex;
-flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    opacity: 0; /* 完全透明 */
 }
+
 
 label {
 margin-top: 10px;
